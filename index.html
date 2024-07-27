@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+
+<html >
+
+
+<head>
+  
+<meta charset="UTF-8">
+  
+<title>Zomato Rating Prediction</title>
+  
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+
+</head>
+
+
+
+<body>
+
+
+<img src="https://1000logos.net/wp-content/uploads/2021/06/Zomato-logo.png"
+alt="zomato image", width="400", height="150",display: flex >
+
+
+
+<style>
+
+html{overflow-y:scroll;}
+body {
+  background-image: url("https://img.freepik.com/free-photo/top-view-delicious-sushi-with-copy-space_23-2150857932.jpg?t=st=1722047660~exp=1722051260~hmac=6b8f420f66ea500ed6dc5dc89fd50d7240c18c6efddb14bc5eac86e882c09349&w=1380");
+  background-position: 200%;
+  background-size: cover;
+   /* Prevents the background image from repeating */
+  background-position: center;
+}
+h1{
+    color::hwb(173 6% 24%);
+    text-align:left;
+    margin-top:50px;
+    font-size:40px;
+}
+h2{
+    color:#b41818;
+    text-align:left;
+    margin-top:50px;
+    font-size:40px;
+}
+div{
+    padding:10px;
+    margin-top:10px;
+    margin-left:32%;
+}
+#button{
+    background-color:#1F6E8C;
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
+    font-size:20px;
+    border-radius:5px;
+    color:white;
+    margin-left:20%;
+}
+.prediction {
+            font-size: 24px;
+            color: rgb(255, 0, 13);
+        }
+</style>
+
+
+
+
+ 
+<div class="login">
+	
+<h1>Predict Zomato Restaurant Ratings</h1>
+<br>
+    <br>
+     
+
+    
+<form action="{{url_for("get_value")}}" method="POST">
+
+ 
+<br>
+    <br>
+
+
+
+
+
+
+
+
+<input type="Online_Order" name="Online_Order" placeholder="Order_Online" list="Online_Order" required="required" />
+
+    <datalist id="Online_Order">
+      <option value="" disabled selected hidden>Please Choose...</option>
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </datalist>  
+    <br>
+        <br>      
+<input type="Book_Table" name="Book_Table" placeholder="Book_Table" list="Book_Table" required="required" />
+
+    <datalist id="Book_Table">
+      <option value="" disabled selected hidden>Please Choose...</option>
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </datalist>		
+    <br>
+    <br>
+<input type="text" name="Votes" placeholder="Votes" list="Votes" id= "Votes" required="required" />
+<br>
+    <br>
+
+
+        
+
+<input type="Restaurant_Type" name="Restaurant_Type" placeholder="Restaurant_Type" list="Restaurant_Type" required="required" />
+    <datalist id="Restaurant_Type">
+      <option value="" disabled selected hidden>Please Choose...</option>
+<option value="0">Bakery</option>
+<option value="1">Bakery, Cafe</option>
+<option value="2">Bakery, Dessert Parlor</option>
+<option value="3">Bakery, Quick Bites</option>
+<option value="4">Bar</option>
+<option value="5">Bar, Casual Dining</option>
+<option value="6">Bar, Lounge</option>
+<option value="7">Bar, Pub</option>
+<option value="8">Bar, Quick Bites</option>
+<option value="9">Beverage Shop</option>
+<option value="10">Beverage Shop, Cafe</option>
+<option value="11">Beverage Shop, Dessert Parlor</option>
+<option value="12">Beverage Shop, Quick Bites</option>
+<option value="13">Cafe</option>
+<option value="14">Cafe, Bakery</option>
+<option value="15">Cafe, Bar</option>
+<option value="16">Cafe, Casual Dining</option>
+<option value="17">Cafe, Dessert Parlor</option>
+<option value="18">Cafe, Lounge</option>
+<option value="19">Cafe, Quick Bites</option>
+<option value="20">Casual Dining</option>
+<option value="21">Casual Dining, Bar</option>
+<option value="22">Casual Dining, Cafe</option>
+<option value="23">Casual Dining, Irani Cafee</option>
+<option value="24">Casual Dining, Lounge</option>
+<option value="25">Casual Dining, Microbrewery</option>
+<option value="26">Casual Dining, Pub</option>
+<option value="27">Club</option>
+<option value="28">Club, Casual Dining</option>
+<option value="29">Delivery</option>
+<option value="30">Dessert Parlor</option>
+<option value="31">Dessert Parlor, Bakery</option>
+<option value="32">Dessert Parlor, Beverage Shop</option>
+<option value="33">Dessert Parlor, Cafe</option>
+<option value="34">Dessert Parlor, Kiosk</option>
+<option value="35">Dessert Parlor, Quick Bites</option>
+<option value="36">Dhaba</option>
+<option value="37">Fine Dining</option>
+<option value="38">Fine Dining, Bar</option>
+<option value="39">Fine Dining, Lounge</option>
+<option value="40">Fine Dining, Microbrewery</option>
+<option value="41">Food Court</option>
+<option value="42">Food Court, Casual Dining</option>
+<option value="43">Food Court, Quick Bites</option>
+<option value="44">Food Truck</option>
+<option value="45">Kiosk</option>
+<option value="46">Lounge</option>
+<option value="47">Lounge, Bar</option>
+<option value="48">Lounge, Cafe</option>
+<option value="49">Lounge, Casual Dining</option>
+<option value="50">Lounge, Microbrewery</option>
+
+    </datalist>
+    <br>
+        <br>       
+
+<input type="Dishes_Liked" name="Dishes_Liked" placeholder="Dishes_Liked" list="Dishes_Liked" required="required" />
+    <datalist id="Dishes_Liked">
+      <option value="" disabled selected hidden>Please Choose...</option>
+<option value="0">Aam Panna, Pasta, Biryani, Paneer Tikka, Chinese Bhel, Veg Pulao, Pav Bhaji</option>
+<option value="1">Aam Panna, Pasta, Chinese Bhel, Biryani, Paneer Tikka, Veg Pulao, Pav Bhaji</option>
+<option value="2">Aam Panna, Pasta, Paneer Tikka, Biryani, Pav Bhaji, Veg Pulao, Nachos</option>
+<option value="3">Afghan Chicken</option>
+<option value="4">Akki Rottis, Neer Dosa</option>
+<option value="5">Akki Rottis, Roti, Rava Idli, Filter Coffee, Pongal, Masala Dosa, Kokum Juice</option>
+<option value="6">Akki Rottis, Rumali Roti, Masala Dosa, Vada, Raagi Roti, Rava Idli, Coffee</option>
+<option value="7">Al Faham Chicken, Kalmi Kebab, Bbq Chicken, Chicken Tikka, Shawarma, Malabari Biryani, Chicken Wrap</option>
+<option value="8">Alfam Chicken, Ghee Rice, Chicken Curry, Mutton Biryani, Chicken Grill, Shawarma, Fruit Salad</option>
+<option value="9">Almond Shake, Pizza Fries</option>
+<option value="10">Aloo Gobhi, Mocktails, Veg Buffet, Dahi Vada, Salads, Chaat, Buttermilk</option>
+<option value="11">Aloo Palya, Masala Poori, Panipuri, Rolls, Chaat, Benne Dosa, Dahipuri</option>
+<option value="12">Aloo Paratha</option>
+<option value="13">Aloo Paratha, Ande Ka Funda</option>
+<option value="14">Aloo Paratha, Burgers, Momos, Gulab Jamun, Mutton Roganjosh, Noodles, Butter Chicken</option>
+<option value="15">Aloo Paratha, Dal Makhani, Chaat</option>
+<option value="16">Aloo Paratha, Dal Makhani, Paneer Parantha, Chaat</option>
+<option value="17">Aloo Paratha, Highway Chicken, Amritsari Kulcha, Veg Platter, Roti, Garlic Naan</option>
+<option value="18">Aloo Paratha, Litti, Dal Makhani, Sattu Paratha, Liti Chokha, Cheese Paneer Paratha, Kheer</option>
+<option value="19">Aloo Paratha, Manchurian</option>
+<option value="20">Aloo Paratha, Masala Dosa, Coffee, Dahi Vada, Paneer Parantha, Sweet Lassi, Mix Veg Parantha</option>
+<option value="21">Aloo Paratha, Panneer Butter Masala</option>
+<option value="22">Aloo Paratha, Poha, Samosa, Kachori, Chaat</option>
+<option value="23">Aloo Paratha, Roti, Butter Chicken</option>
+<option value="24">Aloo Paratha, Samosa, Kachori, Poha, Chaat</option>
+<option value="25">Aloo Paratha, Veggie Wrap, Sabudana Kheer, Chicken Wrap, Rolls, Khichda, Thali</option>
+<option value="26">Aloo Pyaz Paratha, Kheer, Salad, Salads, Thali, Rajma, Chocolate Banana</option>
+<option value="27">Aloo Pyaz Paratha, Kheer, Salads, Chocolate Banana, Thali, Matar Paneer, Detox Smoothie</option>
+<option value="28">Aloo Pyaz Paratha, Kheer, Salads, Salad, Thali, Chocolate Banana, Rajma</option>
+<option value="29">Aloo Tikki Chat</option>
+<option value="30">Ambur Biryani</option>
+<option value="31">Ambur Biryani, Mutton Biryani, Prawn, Raita, Brinjal Curry, Vegetable Biryani, Fish</option>
+<option value="32">Ambur Biryani, Mutton Biryani, Raita</option>
+<option value="33">Ambur Biryani, Vegetable Biryani</option>
+<option value="34">Andhra Chicken Curry, Fried Rice, Biryani</option>
+<option value="35">Andhra Chicken Curry, Hyderabadi Chicken Dum Biryani, Fried Rice</option>
+<option value="36">Andhra Meal, Andhra Style Chilli Chicken, Chicken Biryani, Chicken Guntur</option>
+<option value="37">Andhra Meal, Biryani, Chicken Curry</option>
+<option value="38">Andhra Meal, Chicken Pepper Dry, Andhra Thali, Chicken Biryani, Murgh Ghee Roast, Ghee Rice, Hyderabadi Biryani</option>
+<option value="39">Andhra Meal, Cocktails, Chicken Biryani, Panneer Butter Masala, Mutton Biryani</option>
+<option value="40">Andhra Meal, Mutton Biryani, Chicken Sholay, Chicken Biryani, Chicken Guntur, Andhra Thali, Guava Ice Cream</option>
+<option value="41">Andhra Meal, Mutton Biryani, Pepper Chicken, Veg Thali, Chicken Guntur, Raita, Chicken Kebab</option>
+<option value="42">Andhra Meal, Mutton Soup, Vegetable Biryani, Non Veg Thali, Chicken Boneless Biryani, Mutton Biryani, Chilli Chicken</option>
+<option value="43">Andhra Meal, Potato Wedges, Chicken Biryani, Chicken Satay, Dal Fry</option>
+<option value="44">Andhra Meal, Thali</option>
+<option value="45">Andhra Meal, Vegetable Biryani</option>
+<option value="46">Andhra Meal, Vegetable Biryani, Veg Thali, Chicken Chettinad, French Chicken, Manchurian</option>
+<option value="47">Andhra Thali, Chicken Lollipop, Mutton Biryani, Chicken Boneless Biryani, Andhra Meal, Hyderabadi Biryani, Raita</option>
+<option value="48">Andhra Thali, Mutton Biryani, Mutton Fry, Lassi, Chicken Curry, Ragi Mudde, Ulavacharu</option>
+<option value="49">Andhra Thali, Rice, Mango Dal, Salad, Chicken Meal, Aloo Matar, Chicken Curry</option>
+<option value="50">Andhra Thali, Veg Thali, Chicken Biryani, Kodi Pulao, Mutton Soup, Ulavacharu Mutton Biryani, Lassi</option>
+<option value="51">Andhra Thali, Veg Thali, Lollipop Biryani, Chicken Boneless Biryani, Hyderabadi Biryani, Mutton Biryani, Vegetable Biryani</option>
+<option value="52">Andhra Thali, Veg Thali, Ulavacharu Mutton Biryani, Chicken Biryani, Mutton Soup, Lassi, Kodi Pulao</option>
+
+
+    </datalist>
+    <br>
+        <br>
+
+
+
+
+
+
+    
+
+<input type="Cuisines" name="Cuisines" placeholder="Cuisines" list="Cuisines" required="required" />
+    <datalist id="Cuisines">
+      <option value="" disabled selected hidden>Please Choose...</option>
+<option value="0">African, Burger</option>
+<option value="1">African, Burger, Desserts, Beverages, Fast Food</option>
+<option value="2">American</option>
+<option value="3">American, Asian, Continental, North Indian, South Indian, Chinese</option>
+<option value="4">American, Asian, European, North Indian</option>
+<option value="5">American, BBQ</option>
+<option value="6">American, Burger, Fast Food</option>
+<option value="7">American, Burger, Italian, Steak</option>
+<option value="8">American, Cafe, Continental</option>
+<option value="9">American, Cafe, Continental, French, Burger, Mexican, Desserts, Pizza</option>
+<option value="10">American, Chinese, Continental, North Indian</option>
+<option value="11">American, Continental</option>
+<option value="12">American, Continental, BBQ, Steak</option>
+<option value="13">American, Continental, Chinese</option>
+<option value="14">American, Continental, Fast Food, Steak</option>
+<option value="15">American, Continental, Finger Food</option>
+<option value="16">American, Continental, North Indian, Mediterranean</option>
+<option value="17">American, Continental, North Indian, Salad</option>
+<option value="18">American, Continental, North Indian, South Indian</option>
+<option value="19">American, Continental, Pizza</option>
+<option value="20">American, Continental, Salad</option>
+<option value="21">American, Continental, Steak</option>
+<option value="22">American, Continental, Steak, Salad</option>
+<option value="23">American, European</option>
+<option value="24">American, Fast Food</option>
+<option value="25">American, Finger Food</option>
+<option value="26">American, Finger Food, BBQ, Steak</option>
+<option value="27">American, Italian</option>
+<option value="28">American, Italian, Bakery, Desserts, Sandwich, Beverages, Salad, Rolls</option>
+<option value="29">American, Mexican, Italian, Steak</option>
+<option value="30">American, Modern Indian, Italian, South Indian</option>
+<option value="31">American, North Indian, Chinese</option>
+<option value="32">American, North Indian, Chinese, Finger Food</option>
+<option value="33">American, North Indian, Chinese, Finger Food, Momos</option>
+<option value="34">American, North Indian, European, Tex-Mex</option>
+<option value="35">American, North Indian, Pizza, Finger Food, Continental, Italian</option>
+<option value="36">American, North Indian, Salad</option>
+<option value="37">American, Pizza, Burger</option>
+<option value="38">American, Sandwich</option>
+<option value="39">American, South Indian, Thai, Pizza, Italian</option>
+<option value="40">American, Tex-Mex, Burger, BBQ</option>
+<option value="41">American, Tex-Mex, Burger, BBQ, Mexican</option>
+<option value="42">Andhra</option>
+<option value="43">Andhra, Biryani</option>
+<option value="44">Andhra, Biryani, Chinese</option>
+<option value="45">Andhra, Biryani, Chinese, Hyderabadi, North Indian, South Indian</option>
+<option value="46">Andhra, Biryani, Chinese, North Indian</option>
+<option value="47">Andhra, Biryani, Chinese, North Indian, Seafood, South Indian</option>
+<option value="48">Andhra, Biryani, Chinese, South Indian</option>
+<option value="49">Andhra, Biryani, North Indian</option>
+<option value="50">Andhra, Biryani, North Indian, Chinese</option>
+<option value="51">Andhra, Biryani, Seafood</option>
+<option value="52">Andhra, Biryani, Seafood, North Indian</option>
+<option value="53">Andhra, Biryani, South Indian</option>
+<option value="54">Andhra, Biryani, South Indian, Chinese</option>
+<option value="55">Andhra, Chinese, Biryani</option>
+<option value="56">Andhra, Chinese, North Indian</option>
+<option value="57">Andhra, Chinese, North Indian, Biryani</option>
+<option value="58">Andhra, Chinese, North Indian, Hyderabadi</option>
+<option value="59">Andhra, Chinese, North Indian, Seafood</option>
+<option value="60">Andhra, Chinese, North Indian, South Indian</option>
+<option value="61">Andhra, Continental, Chinese</option>
+<option value="62">Andhra, Hyderabadi, Biryani</option>
+<option value="63">Andhra, Hyderabadi, Biryani, Chinese, North Indian</option>
+<option value="64">Andhra, North Indian</option>
+<option value="65">Andhra, North Indian, Biryani</option>
+<option value="66">Andhra, North Indian, Biryani, Beverages</option>
+<option value="67">Andhra, North Indian, Biryani, Seafood</option>
+<option value="68">Andhra, North Indian, Chinese</option>
+<option value="69">Andhra, North Indian, Chinese, Biryani</option>
+<option value="70">Andhra, North Indian, Chinese, Biryani, Seafood</option>
+<option value="71">Andhra, North Indian, Chinese, Mangalorean</option>
+<option value="72">Andhra, North Indian, Chinese, Mangalorean, Seafood, Biryani</option>
+<option value="73">Andhra, North Indian, Chinese, Seafood</option>
+<option value="74">Andhra, North Indian, Chinese, Seafood, Biryani</option>
+<option value="75">Andhra, North Indian, South Indian</option>
+<option value="76">Andhra, Seafood, Biryani</option>
+<option value="77">Andhra, Seafood, North Indian, Chinese</option>
+<option value="78">Andhra, South Indian</option>
+<option value="79">Andhra, South Indian, Biryani</option>
+<option value="80">Andhra, South Indian, Chinese, North Indian</option>
+<option value="81">Andhra
+    </datalist>
+    <br>
+        <br>        
+
+<input type="Cost_For_2_Person" name="Cost_For_2_Person" placeholder="Cost_For_2_Person" list="Cost_For_2_Person" required="required" />
+    <datalist id="Cost_For_2_Person">
+      <option value="" disabled selected hidden>Please Choose...</option>
+<option value="40">40</option>
+<option value="100">100</option>
+<option value="120">120</option>
+<option value="150">150</option>
+<option value="180">180</option>
+<option value="200">200</option>
+<option value="230">230</option>
+<option value="250">250</option>
+<option value="300">300</option>
+<option value="330">330</option>
+<option value="350">350</option>
+<option value="400">400</option>
+<option value="450">450</option>
+<option value="500">500</option>
+<option value="550">550</option>
+<option value="600">600</option>
+<option value="650">650</option>
+<option value="700">700</option>
+<option value="750">750</option>
+<option value="800">800</option>
+<option value="850">850</option>
+<option value="900">900</option>
+<option value="950">950</option>
+<option value="1000">1000</option>
+<option value="1050">1050</option>
+<option value="1100">1100</option>
+<option value="1200">1200</option>
+<option value="1250">1250</option>
+<option value="1300">1300</option>
+<option value="1350">1350</option>
+<option value="1400">1400</option>
+<option value="1450">1450</option>
+<option value="1500">1500</option>
+<option value="1600">1600</option>
+<option value="1650">1650</option>
+<option value="1700">1700</option>
+<option value="1800">1800</option>
+<option value="1900">1900</option>
+<option value="2000">2000</option>
+<option value="2100">2100</option>
+<option value="2200">2200</option>
+<option value="2300">2300</option>
+<option value="2400">2400</option>
+<option value="2500">2500</option>
+<option value="2600">2600</option>
+<option value="2700">2700</option>
+<option value="2800">2800</option>
+<option value="3000">3000</option>
+<option value="3200">3200</option>
+<option value="3400">3400</option>
+<option value="3500">3500</option>
+<option value="3700">3700</option>
+<option value="4000">4000</option>
+<option value="4100">4100</option>
+<option value="4500">4500</option>
+<option value="5000">5000</option>
+<option value="6000">6000</option>
+
+    </datalist>
+
+    <br>
+        <br>
+
+<input type="Type" name="Type" placeholder="Type" list="Type" required="required" />
+    <datalist id="Type">
+      <option value="" disabled selected hidden>Please Choose...</option>
+<option value="0">Buffet</option>
+<option value="1">Cafes</option>
+<option value="2">Delivery</option>
+<option value="3">Desserts</option>
+<option value="4">Dine-out</option>
+<option value="5">Drinks & nightlife</option>
+<option value="6">Pubs and bars</option>
+	
+</datalist>
+<br>
+    <br>
+<input type="City" name="City" placeholder="City" list="City" required="required" />
+    <datalist id="City">
+      <option value="" disabled selected hidden>Please Choose...</option>
+
+<option value="0"> Banashankari </option>
+<option value="1"> Bannerghatta Road </option>
+<option value="2">  Basavanagudi </option>
+<option value="3">Bellandur  </option>
+<option value="5">Brigade Road  </option>
+<option value="6">Brookefield  </option>
+<option value="7">BTM  </option>
+<option value="8">Church Street  </option>
+<option value="9">Electronic City  </option>
+<option value="10">Frazer Town   </option>
+<option value="11">HSR  </option>
+<option value="12"> Indiranagar </option>
+<option value="13">Jayanagar  </option>
+<option value="14">JP Nagar  </option>
+<option value="15">Kalyan Nagar  </option>
+<option value="16">Kammanahalli  </option>
+<option value="17">Koramangala 4th Block  </option>
+<option value="18"> Koramangala 5th Block </option>
+<option value="19"> oramangala 6th Block </option>
+<option value="20">Koramangala 7th Block  </option>
+<option value="21"> Lavelle Road </option>
+<option value="22">  Malleshwaram </option>
+<option value="23"> Marathahalli </option>
+<option value="24"> MG Road, New BEL Road </option>
+<option value="25">Old Airport Road  </option>
+<option value="26">Rajajinagar  </option>
+<option value="26"> Residency Road </option>
+<option value="27"> Sarjapur Road </option>
+<option value="28">  Whitefield</option>
+</datalist>
+<br>
+    <br>     
+    <button type="submit" id="button">Submit</button> 
+    
+</form>
+
+   
+<br>
+   
+<br>
+    <br>
+    
+
+<h2>    {{ prediction }} Rating </h2>
+   
+
+
+<br>
+<br>
+
+</div>
+
+
+
+
+</body>
+
+</html>
